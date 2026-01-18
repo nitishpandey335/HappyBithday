@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Muskan ❤️</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-pink: #ff4d6d;
+            --soft-purple: #8e44ad;
+            --romantic-red: #c0392b;
+            --gold: #f1c40f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fce4ec, #f3e5f5, #ffebee);
+            overflow-x: hidden;
+            text-align: center;
+            color: #444;
+            min-height: 100vh;
+        }
+
+        /* --- Welcome Screen --- */
+        #welcome-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #ff758c 0%, #ff7eb3 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease-out;
+            padding: 20px;
+        }
+
+        .heart-loader {
+            font-size: 50px;
+            animation: pulse 1.5s infinite;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .heart-loader {
+                font-size: 40px;
+            }
+        }
+
+        #welcome-screen h1 {
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-align: center;
+            padding: 0 10px;
+            line-height: 1.3;
+        }
+
+        #welcome-screen h2 {
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            opacity: 0.9;
+            line-height: 1.3;
+        }
+
+        .start-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: white;
+            color: var(--primary-pink);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            margin-top: 20px;
+            opacity: 1;
+            pointer-events: auto;
+            line-height: 1.5;
+        }
+
+        .start-btn.disabled {
+            background: #cccccc;
+            color: #888888;
+            cursor: not-allowed;
+            opacity: 0.6;
+            pointer-events: none;
+            box-shadow: none;
+        }
+
+        .start-btn:hover:not(.disabled) {
+            transform: scale(1.1);
+        }
+
+        /* --- Countdown Timer --- */
+        .countdown-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px auto 30px;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+            border: 3px solid var(--primary-pink);
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .countdown-container {
+                padding: 20px;
+                margin: 15px auto 25px;
+            }
+        }
+
+        .countdown-title {
+            font-family: 'Dancing Script', cursive;
+            color: var(--primary-pink);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            line-height: 1.3;
+        }
+
+        @media (max-width: 768px) {
+            .countdown-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        .countdown-box {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: linear-gradient(45deg, var(--primary-pink), var(--soft-purple));
+            color: white;
+            padding: 20px 15px;
+            border-radius: 15px;
+            min-width: 100px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .countdown-item {
+                min-width: 80px;
+                padding: 15px 10px;
+                flex: 1;
+                max-width: calc(50% - 10px);
+            }
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .countdown-number {
+                font-size: 2rem;
+            }
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.3;
+        }
+
+        .waiting-message {
+            color: white;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            max-width: 500px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .waiting-message {
+                font-size: 1rem;
+                padding: 8px 15px;
+            }
+        }
+
+        /* --- Birthday Arrived Celebration --- */
+        .celebration-message {
+            background: linear-gradient(45deg, var(--gold), #ff9966);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 20px;
+            margin: 20px auto;
+            max-width: 500px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            animation: celebrationPulse 1.5s infinite;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            display: none;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        @keyframes celebrationPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* --- Music Player Controls --- */
+        .music-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            z-index: 1002;
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--primary-pink);
+            transition: transform 0.3s ease;
+            max-width: 90vw;
+        }
+
+        @media (max-width: 768px) {
+            .music-controls {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                padding: 12px 15px;
+                gap: 10px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        .music-controls:hover {
+            transform: translateY(-2px);
+        }
+
+        .music-btn {
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .music-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+
+        .music-btn:hover {
+            background: #ff3355;
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(255, 77, 109, 0.5);
+        }
+
+        .volume-slider {
+            width: 100px;
+            -webkit-appearance: none;
+            height: 6px;
+            border-radius: 5px;
+            background: #ffb6c1;
+            outline: none;
+            transition: all 0.3s ease;
+            flex-shrink: 1;
+        }
+
+        @media (max-width: 768px) {
+            .volume-slider {
+                width: 80px;
+            }
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-pink);
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .volume-slider::-webkit-slider-thumb:hover {
+            background: #ff3355;
+            transform: scale(1.1);
+        }
+
+        .music-info {
+            font-size: 0.9rem;
+            color: var(--primary-pink);
+            font-weight: bold;
+            margin-right: 5px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 150px;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 768px) {
+            .music-info {
+                font-size: 1rem;
+                max-width: 100px;
+                order: -1;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 5px;
+            }
+        }
+
+        .song-title {
+            background: linear-gradient(45deg, var(--primary-pink), var(--soft-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        /* --- Main Content --- */
+        #main-content {
+            display: none;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeInContent 1s ease forwards;
+            animation-delay: 0.5s;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @keyframes fadeInContent {
+            to { opacity: 1; }
+        }
+
+        header {
+            margin-top: 50px;
+            animation: fadeInDown 2s;
+            padding: 0 15px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                margin-top: 30px;
+            }
+        }
+
+        h1.main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            color: var(--primary-pink);
+            text-shadow: 0 0 10px rgba(255, 77, 109, 0.3);
+            margin-bottom: 10px;
+            line-height: 1.2;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .glow-text {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .header-subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            color: #d63384;
+            margin-bottom: 30px;
+            line-height: 1.3;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .romantic-msg {
+            max-width: 600px;
+            margin: 20px auto;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border-left: 5px solid var(--primary-pink);
+            animation: slideIn 1.5s ease;
+            text-align: center;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        @media (max-width: 768px) {
+            .romantic-msg {
+                padding: 20px;
+                margin: 20px 15px;
+                font-size: 1rem;
+            }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* --- Photo Slider --- */
+        .slider-container {
+            position: relative;
+            max-width: 500px;
+            margin: 40px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border: 8px solid white;
+            animation: float 3s ease-in-out infinite;
+            width: 90%;
+        }
+
+        @media (max-width: 768px) {
+            .slider-container {
+                max-width: 400px;
+                border-width: 5px;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .slider-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: none;
+            animation: fadeImg 1s;
+        }
+
+        @media (max-width: 768px) {
+            .slider-img {
+                height: 300px;
+            }
+        }
+
+        .slider-img.active {
+            display: block;
+        }
+
+        /* --- Animations & Effects --- */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--primary-pink); }
+            to { text-shadow: 0 0 10px #fff, 0 0 20px #ffb6c1, 0 0 30px var(--primary-pink); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeImg {
+            from { opacity: 0.4; }
+            to { opacity: 1; }
+        }
+
+        /* --- FLOATING HEARTS/BALLOONS - SLOWER --- */
+        .floating-heart {
+            position: fixed;
+            color: var(--primary-pink);
+            pointer-events: none;
+            z-index: 1000;
+            animation: floatUp 8s linear forwards;
+            font-size: 30px;
+        }
+
+        @keyframes floatUp {
+            0% { 
+                transform: translateY(100vh) rotate(0deg); 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translateY(-100px) rotate(360deg); 
+                opacity: 0; 
+            }
+        }
+
+        /* --- Balloons --- */
+        .balloon {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            animation: floatUpBalloon 10s linear forwards;
+            font-size: 40px;
+        }
+
+        @keyframes floatUpBalloon {
+            0% { 
+                transform: translateY(100vh) rotate(0deg); 
+                opacity: 0.8; 
+            }
+            100% { 
+                transform: translateY(-100px) rotate(15deg); 
+                opacity: 0; 
+            }
+        }
+
+        /* --- Rotating Quotes --- */
+        #quotes-container {
+            font-style: italic;
+            min-height: 60px;
+            margin: 30px 0;
+            color: var(--soft-purple);
+            font-weight: 600;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 15px;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            opacity: 0.9;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        canvas#confetti {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1001;
+        }
+        
+        /* --- Message Cards --- */
+        .messages-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 15px;
+        }
+        
+        .message-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            flex: 1;
+            min-width: 250px;
+            max-width: 400px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--primary-pink);
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @media (max-width: 768px) {
+            .message-card {
+                padding: 20px;
+                min-width: 100%;
+                text-align: center;
+            }
+        }
+        
+        .message-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-pink), var(--soft-purple));
+        }
+        
+        .message-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .message-card h3 {
+            color: var(--primary-pink);
+            margin-bottom: 15px;
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            line-height: 1.3;
+        }
+
+        .message-card p {
+            line-height: 1.6;
+        }
+        
+        /* --- Surprise Button --- */
+        .surprise-btn {
+            background: linear-gradient(45deg, var(--primary-pink), var(--soft-purple));
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 40px auto;
+            display: block;
+            box-shadow: 0 8px 25px rgba(255, 77, 109, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            width: 90%;
+            max-width: 500px;
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        .surprise-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .surprise-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 77, 109, 0.6);
+        }
+        
+        .surprise-btn:hover::after {
+            left: 100%;
+        }
+
+        /* --- Section Titles --- */
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            color: var(--soft-purple);
+            margin: 40px 0 20px;
+            padding: 0 15px;
+            line-height: 1.3;
+            text-align: center;
+            word-wrap: break-word;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 480px) {
+            .countdown-item {
+                min-width: 70px;
+                padding: 12px 8px;
+            }
+            
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+            
+            .music-controls {
+                gap: 8px;
+                padding: 10px 12px;
+            }
+            
+            .music-info {
+                max-width: 80px;
+                font-size: 0.9rem;
+            }
+            
+            .volume-slider {
+                width: 60px;
+            }
+            
+            .romantic-msg {
+                padding: 15px;
+            }
+            
+            .header-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .countdown-box {
+                gap: 8px;
+            }
+            
+            .countdown-item {
+                min-width: 60px;
+                padding: 10px 5px;
+            }
+            
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+            
+            h1.main-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* --- Text overflow prevention --- */
+        .text-container {
+            max-width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="welcome-screen">
+        <div class="heart-loader">❤️</div>
+        <h1>A Special Surprise Awaits You, Muskan</h1>
+        
+        <!-- Celebration message when birthday arrives -->
+        <div class="celebration-message" id="celebration-message">
+            🎉 HAPPY BIRTHDAY MUSKAN! 🎉<br>
+            The celebration can now begin!
+        </div>
+        
+        <!-- Countdown Timer -->
+        <div class="countdown-container" id="countdown-container">
+            <div class="countdown-title">Countdown to Your Birthday</div>
+            <div class="countdown-box">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="waiting-message" id="waiting-message">
+            The celebration will begin on March 1<br>
+            Get ready for a special surprise! 🎂
+        </div>
+        
+        <h2>🎁 Birthday Countdown 🎁</h2>
+        <button class="start-btn" id="start-btn" onclick="startCelebration()">Tap to Begin the Celebration</button>
+    </div>
+
+    <canvas id="confetti"></canvas>
+    
+    <!-- Music Controls -->
+    <div class="music-controls" style="display: none;">
+        <span class="music-info">🎵 <span class="song-title">Muskan's Birthday Song</span></span>
+        <button class="music-btn" id="play-btn">▶️</button>
+        <button class="music-btn" id="pause-btn">⏸️</button>
+        <input type="range" min="0" max="1" step="0.01" value="0.7" class="volume-slider" id="volume-slider">
+    </div>
+
+    <div id="main-content">
+        <header>
+            <h1 class="main-title glow-text">Happy Birthday Muskan! 🎂</h1>
+            <p class="header-subtitle">❤️ My Love, My World, My Everything ❤️</p>
+        </header>
+
+        <section class="romantic-msg">
+            <p>On this beautiful day, I want you to know how much you mean to me. Your smile (Muskan) is my favorite thing in the world. You bring so much light and joy into my life. Thank you for being you. Today is all about celebrating the amazing person you are! 🌹</p>
+        </section>
+
+        <h3 class="section-title">Our Beautiful Memories 💕</h3>
+        <div class="slider-container" id="gallery">
+            <img src="image1.jpg" class="slider-img active" alt="Memory 1">
+            <img src="image2.jpg" class="slider-img" alt="Memory 2">
+            <img src="image3.jpg" class="slider-img" alt="Memory 3">
+        </div>
+
+        <h3 class="section-title">My Heart's Messages 💌</h3>
+        <div class="messages-container">
+            <div class="message-card">
+                <h3>My Promise to You</h3>
+                <p>I promise to always stand by your side, to support your dreams, to celebrate your successes, and to love you more with each passing day. You are my forever and always.</p>
+            </div>
+            <div class="message-card">
+                <h3>Why I Love You</h3>
+                <p>Your kindness, your smile, your strength, your laughter - everything about you makes my world brighter. You're perfect in every way. I cherish every moment with you.</p>
+            </div>
+        </div>
+
+        <button class="surprise-btn" onclick="showSurprise()">
+            🎁 Click for a Special Birthday Wish! 🎁
+        </button>
+
+        <div id="quotes-container"></div>
+
+        <footer>
+            Made with Infinite Love ❤️ just for Muskan <br>
+            <span style="font-size: 0.9rem;">Forever Yours...</span>
+        </footer>
+    </div>
+
+    <!-- Using YOUR LOCAL birthday.mp3 file -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="birthday.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const quotes = [
+            "You are my happiness, my everything",
+            "Forever and always, Muskan",
+            "My love, my world, my heart",
+            "Every day with you is a precious gift",
+            "You make my heart skip a beat",
+            "You are my sunshine on rainy days",
+            "My love for you grows stronger every day",
+            "You are the most beautiful person I know",
+            "You complete my world",
+            "I'm forever grateful for you"
+        ];
+
+        // Birthday date - March 1, 2026
+        const BIRTHDAY_DATE = new Date('March 1, 2026 00:00:00').getTime();
+        
+        let currentQuote = 0;
+        let currentImg = 0;
+        let isMusicLoaded = false;
+        let countdownInterval;
+        let isBirthday = false;
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCountdown();
+            countdownInterval = setInterval(updateCountdown, 1000);
+            
+            // Disable start button initially
+            const startBtn = document.getElementById('start-btn');
+            startBtn.classList.add('disabled');
+            
+            // Check if birthday has arrived
+            checkBirthdayStatus();
+            
+            // Preload music in background
+            preloadMusic();
+        });
+
+        function checkBirthdayStatus() {
+            const now = new Date().getTime();
+            const distance = BIRTHDAY_DATE - now;
+            
+            if (distance <= 0) {
+                // Birthday has arrived!
+                isBirthday = true;
+                
+                // Update UI
+                document.getElementById('celebration-message').style.display = 'block';
+                document.getElementById('countdown-container').style.display = 'none';
+                document.getElementById('waiting-message').innerHTML = 
+                    "🎉 The wait is over! It's your birthday! 🎉<br>Let the celebration begin!";
+                
+                // Enable start button
+                const startBtn = document.getElementById('start-btn');
+                startBtn.classList.remove('disabled');
+                startBtn.textContent = "🎂 Start Birthday Celebration! 🎂";
+                
+                // Auto-start confetti
+                initConfetti();
+                burstConfetti();
+                
+                // Auto-play birthday music
+                setTimeout(() => {
+                    playMusic();
+                }, 1000);
+            } else {
+                // Still counting down
+                isBirthday = false;
+                const startBtn = document.getElementById('start-btn');
+                startBtn.classList.add('disabled');
+            }
+        }
+
+        // Preload music silently
+        function preloadMusic() {
+            const music = document.getElementById('bg-music');
+            
+            // Set volume to 0 during preload
+            music.volume = 0;
+            
+            // Load music
+            music.load();
+            
+            // When music is ready, mark it as loaded
+            music.addEventListener('canplaythrough', () => {
+                console.log("Music preloaded and ready");
+                isMusicLoaded = true;
+                music.volume = 0.7; // Reset volume
+            });
+            
+            // Handle loading errors silently
+            music.addEventListener('error', (e) => {
+                console.error("Error loading music:", e);
+                isMusicLoaded = false;
+                
+                // Try fallback URL if local file fails
+                if (!music.src.includes('http')) {
+                    music.src = 'https://assets.mixkit.co/music/preview/mixkit-happy-birthday-to-you-443.mp3';
+                    music.load();
+                }
+            });
+        }
+
+        // Play music function
+        function playMusic() {
+            const music = document.getElementById('bg-music');
+            
+            if (!isMusicLoaded) {
+                // If music not loaded yet, try to play
+                const playPromise = music.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log("🎵 Birthday song started!");
+                        isMusicLoaded = true;
+                    }).catch(error => {
+                        console.log("Audio play was prevented");
+                        isMusicLoaded = true;
+                    });
+                }
+            } else {
+                // Music is already loaded, just play it
+                music.play().then(() => {
+                    console.log("🎵 Birthday song playing!");
+                }).catch(e => {
+                    console.log("Click to play music");
+                });
+            }
+        }
+
+        function startCelebration() {
+            // Check if birthday has arrived
+            if (!isBirthday) {
+                showToast("🎂 The celebration will begin on March 1, 2026!", true);
+                return;
+            }
+            
+            // Hide welcome screen
+            document.getElementById('welcome-screen').style.opacity = '0';
+            
+            setTimeout(() => {
+                document.getElementById('welcome-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                document.querySelector('.music-controls').style.display = 'flex';
+                
+                // Play music
+                playMusic();
+                
+                // Trigger effects
+                initConfetti();
+                createFloatingHeartsAndBalloons();
+                rotateQuotes();
+                startSlider();
+                
+                // Massive confetti burst
+                burstConfetti();
+                setTimeout(burstConfetti, 500);
+                setTimeout(burstConfetti, 1000);
+            }, 1000);
+        }
+
+        // --- Countdown Timer Functions ---
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = BIRTHDAY_DATE - now;
+            
+            // Update birthday status
+            if (distance <= 0 && !isBirthday) {
+                clearInterval(countdownInterval);
+                isBirthday = true;
+                checkBirthdayStatus();
+                return;
+            }
+            
+            if (distance <= 0) {
+                // Birthday has arrived
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+                return;
+            }
+            
+            // Calculate time units
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Update countdown
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+        }
+
+        // --- Music Controls ---
+        function setupMusicControls() {
+            const music = document.getElementById('bg-music');
+            const playBtn = document.getElementById('play-btn');
+            const pauseBtn = document.getElementById('pause-btn');
+            const volumeSlider = document.getElementById('volume-slider');
+
+            // Play button
+            playBtn.addEventListener('click', () => {
+                if (!isMusicLoaded) {
+                    showToast("Music loading...");
+                    return;
+                }
+                
+                music.play().then(() => {
+                    playBtn.innerHTML = '▶️';
+                    playBtn.style.background = '#4CAF50';
+                    showToast("Music playing");
+                    
+                    setTimeout(() => {
+                        playBtn.style.background = '';
+                    }, 500);
+                }).catch(e => {
+                    showToast("Click to play music");
+                });
+            });
+
+            // Pause button
+            pauseBtn.addEventListener('click', () => {
+                music.pause();
+                pauseBtn.style.background = '#ff9800';
+                showToast("Music paused");
+                
+                setTimeout(() => {
+                    pauseBtn.style.background = '';
+                }, 500);
+            });
+
+            // Volume slider
+            volumeSlider.addEventListener('input', (e) => {
+                music.volume = e.target.value;
+                const volPercent = Math.round(e.target.value * 100);
+                showToast(`Volume: ${volPercent}%`);
+            });
+
+            // Update play/pause button based on music state
+            music.addEventListener('play', () => {
+                playBtn.innerHTML = '▶️';
+            });
+            
+            music.addEventListener('pause', () => {
+                playBtn.innerHTML = '▶️';
+            });
+
+            // Auto-play handling for mobile
+            document.body.addEventListener('click', function initAudio() {
+                if (music.paused && isMusicLoaded) {
+                    music.play().then(() => {
+                        console.log("Audio started on click");
+                    }).catch(e => console.log(e));
+                }
+            }, { once: true });
+        }
+
+        // Initialize music controls
+        document.addEventListener('DOMContentLoaded', function() {
+            setupMusicControls();
+        });
+
+        // --- Floating Hearts & Balloons (SLOWER) ---
+        function createFloatingHeartsAndBalloons() {
+            const heartEmojis = ['❤️', '💕', '💖', '💗', '💓', '💞', '💘', '💝'];
+            const balloonEmojis = ['🎈', '🎈', '🎈', '🎈'];
+            
+            setInterval(() => {
+                // Create hearts (less frequent)
+                if (Math.random() > 0.3) {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                    heart.className = 'floating-heart';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    heart.style.opacity = Math.random() * 0.5 + 0.3;
+                    heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                    document.body.appendChild(heart);
+                    
+                    // Remove heart after animation
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.parentNode.removeChild(heart);
+                        }
+                    }, 10000);
+                }
+                
+                // Create balloons (less frequent and slower)
+                if (Math.random() > 0.7) {
+                    const balloon = document.createElement('div');
+                    balloon.innerHTML = balloonEmojis[Math.floor(Math.random() * balloonEmojis.length)];
+                    balloon.className = 'balloon';
+                    balloon.style.left = Math.random() * 100 + 'vw';
+                    balloon.style.fontSize = (Math.random() * 30 + 40) + 'px';
+                    balloon.style.opacity = Math.random() * 0.4 + 0.4;
+                    balloon.style.animationDuration = (Math.random() * 5 + 12) + 's';
+                    document.body.appendChild(balloon);
+                    
+                    // Remove balloon after animation
+                    setTimeout(() => {
+                        if (balloon.parentNode) {
+                            balloon.parentNode.removeChild(balloon);
+                        }
+                    }, 17000);
+                }
+            }, 500);
+        }
+
+        function createSpecialHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '💖';
+            heart.className = 'floating-heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = '50px';
+            heart.style.color = '#ff4d6d';
+            heart.style.animationDuration = '8s';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.parentNode.removeChild(heart);
+                }
+            }, 8000);
+        }
+
+        // --- Photo Slider Logic ---
+        function startSlider() {
+            const imgs = document.querySelectorAll('.slider-img');
+            setInterval(() => {
+                imgs[currentImg].classList.remove('active');
+                currentImg = (currentImg + 1) % imgs.length;
+                imgs[currentImg].classList.add('active');
+            }, 3000);
+        }
+
+        // --- Rotating Quotes ---
+        function rotateQuotes() {
+            const qContainer = document.getElementById('quotes-container');
+            setInterval(() => {
+                qContainer.style.opacity = 0;
+                setTimeout(() => {
+                    qContainer.innerText = `"${quotes[currentQuote]}"`;
+                    qContainer.style.opacity = 1;
+                    currentQuote = (currentQuote + 1) % quotes.length;
+                }, 500);
+            }, 4000);
+        }
+
+        // --- Surprise Message ---
+        function showSurprise() {
+            const surprises = [
+                "🎉 Happy Birthday, My Love! 🎉\n\nYou light up my world brighter than any star. Today, I celebrate you and the incredible person you are. May all your dreams come true! 💕\n\nWith all my love... ❤️",
+                
+                "✨ To My Dearest Muskan ✨\n\nOn your special day, I want to remind you how truly amazing you are. You deserve all the happiness in the world. Here's to making more beautiful memories together! 🌹\n\nForever yours...",
+                
+                "🎂 Happy Birthday, Beautiful! 🎂\n\nEvery moment with you is a treasure. Your smile is my favorite sight, your laughter my favorite sound. Thank you for being you. I love you more than words can say! 💖"
+            ];
+            
+            const randomSurprise = surprises[Math.floor(Math.random() * surprises.length)];
+            alert(randomSurprise);
+            
+            // Extra confetti burst
+            burstConfetti();
+            
+            // Special floating hearts (slower)
+            for(let i = 0; i < 15; i++) {
+                setTimeout(() => createSpecialHeart(), i * 200);
+            }
+        }
+
+        // --- Toast Notification ---
+        function showToast(message, isError = false) {
+            // Remove existing toast
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            // Create new toast
+            const toast = document.createElement('div');
+            toast.className = `toast ${isError ? 'error' : ''}`;
+            toast.textContent = message;
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: ${isError ? '#ff3333' : '#4CAF50'};
+                color: white;
+                padding: 12px 25px;
+                border-radius: 25px;
+                z-index: 1004;
+                font-weight: bold;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                animation: toastSlide 0.3s ease;
+                max-width: 90%;
+                text-align: center;
+                word-wrap: break-word;
+                line-height: 1.4;
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Remove toast after 3 seconds
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 500);
+            }, 3000);
+        }
+
+        // --- Confetti System ---
+        let particles = [];
+        
+        function initConfetti() {
+            const canvas = document.getElementById('confetti');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const colors = ['#ff4d6d', '#ff758c', '#8e44ad', '#f1c40f', '#e74c3c', '#3498db', '#2ecc71'];
+
+            // Create initial particles
+            for (let i = 0; i < 150; i++) {
+                particles.push(createParticle(canvas, colors));
+            }
+
+            // Start animation
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach((p, index) => {
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    
+                    // Draw different shapes
+                    if (p.type === 'circle') {
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    } else if (p.type === 'heart') {
+                        drawHeart(ctx, p.x, p.y, p.size);
+                    } else {
+                        ctx.rect(p.x - p.size/2, p.y - p.size/2, p.size, p.size);
+                    }
+                    
+                    ctx.fill();
+                    
+                    // Update position - SLOWER
+                    p.y += p.speed * 0.7;
+                    p.x += Math.sin(p.angle + p.y * 0.01) * p.swing * 0.7;
+                    p.angle += 0.03;
+                    
+                    // Reset particle if it falls off screen
+                    if (p.y > canvas.height) {
+                        particles[index] = createParticle(canvas, colors);
+                        particles[index].y = -10;
+                    }
+                });
+                
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        function createParticle(canvas, colors) {
+            const types = ['circle', 'square', 'heart'];
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height - canvas.height,
+                size: Math.random() * 6 + 3,
+                speed: Math.random() * 2 + 0.5,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                angle: Math.random() * Math.PI * 2,
+                swing: Math.random() * 1.5 + 0.5,
+                type: types[Math.floor(Math.random() * types.length)]
+            };
+        }
+
+        function drawHeart(ctx, x, y, size) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.beginPath();
+            let topCurveHeight = size * 0.3;
+            ctx.moveTo(0, size/3);
+            // Left top curve
+            ctx.bezierCurveTo(
+                -size/2, -size/2 + topCurveHeight,
+                -size, size/3,
+                0, size
+            );
+            // Right top curve
+            ctx.bezierCurveTo(
+                size, size/3,
+                size/2, -size/2 + topCurveHeight,
+                0, size/3
+            );
+            ctx.closePath();
+            ctx.restore();
+        }
+
+        function burstConfetti() {
+            const canvas = document.getElementById('confetti');
+            const colors = ['#ff4d6d', '#ff758c', '#8e44ad', '#f1c40f', '#e74c3c'];
+            
+            // Add burst particles
+            for (let i = 0; i < 100; i++) {
+                particles.push({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    size: Math.random() * 8 + 4,
+                    speed: Math.random() * 5 + 2,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    angle: Math.random() * Math.PI * 2,
+                    swing: Math.random() * 2 + 1,
+                    type: ['circle', 'square', 'heart'][Math.floor(Math.random() * 3)]
+                });
+            }
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('confetti');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Adjust countdown layout on very small screens
+            if (window.innerWidth <= 360) {
+                const countdownItems = document.querySelectorAll('.countdown-item');
+                countdownItems.forEach(item => {
+                    item.style.minWidth = '60px';
+                });
+            }
+        });
+
+        // Touch events for mobile
+        document.addEventListener('touchstart', function(e) {
+            // Prevent double-tap zoom
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Add CSS for toast animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes toastSlide {
+                from { transform: translateX(-50%) translateY(100px); opacity: 0; }
+                to { transform: translateX(-50%) translateY(0); opacity: 1; }
+            }
+            
+            @media (max-width: 768px) {
+                .toast {
+                    font-size: 0.9rem;
+                    padding: 10px 20px;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                .toast {
+                    font-size: 0.8rem;
+                    padding: 8px 15px;
+                    bottom: 10px;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
